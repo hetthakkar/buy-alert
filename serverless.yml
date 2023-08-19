@@ -1,0 +1,27 @@
+org: hettest
+app: seproject
+service: buy-alert
+frameworkVersion: '3'
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  httpApi:
+    cors: true
+  environment:
+    DISCORD_TOKEN: ${env:DISCORD_TOKEN}
+functions:
+  cronHandler:
+    handler: index.handler
+    events:
+      # Invoke Lambda function every 5 minute
+      - schedule: rate(5 minutes)
+      - httpApi:
+          path: /check-stock
+          method: post
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline

@@ -1,0 +1,16 @@
+// Run serverless offline and debug with node debugger
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "name": "Serverless Offline",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "debug"],
+      "outFiles": ["${workspaceFolder}/index.js"],
+      "sourceMaps": true
+    }
+  ]
+}
